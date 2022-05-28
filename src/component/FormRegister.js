@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function FormRegister(){
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    let data;
+    
+    function responeRegister(email, password) {
+        return(
+             data = {
+                email,
+                password
+            }
+        )
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const  respone = responeRegister(email, password)
+        const storage = window.localStorage;
+        storage.setItem('email', respone.email )
+    }
+
     return(
         <div className="wrap--fromregis">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h4>Create new Account</h4>
                 <div className="input--wrap">
                     <label>
                     <p>Email</p> 
                         <input 
-                        type={'email'} 
-                        placeholder='Masukan Email'>
+                        type={'text'} 
+                        placeholder='Masukan Email'
+                        onChange={(e) => {
+                            setEmail(e.target.value)
+                        }}>
                         </input>
                     </label>
                 </div>
@@ -20,7 +43,10 @@ export default function FormRegister(){
                     <p>Password</p>
                         <input
                         type={'password'}
-                        placeholder='Masukan Password'>
+                        placeholder='Masukan Password'
+                        onChange={(e) => {
+                            setPassword(e.target.value)
+                        }}>
                         </input>
                     </label>
                 </div>
