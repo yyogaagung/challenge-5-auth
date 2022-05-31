@@ -19,7 +19,7 @@ export default function FormRegister(){
         e.preventDefault();
         const  respone = responeRegister(email, password)
         const storage = window.localStorage;
-        storage.setItem('email', respone.email )
+        storage.setItem('email', respone.email)
     }
 
     return(

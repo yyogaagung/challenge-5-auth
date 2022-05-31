@@ -8,6 +8,8 @@ export default function ProtectedRoutedAdmin(){
 
     if(email === 'admin'){
         return <Outlet></Outlet>
+        
+        
     }
     return <Navigate to={'/login'}></Navigate>
 }

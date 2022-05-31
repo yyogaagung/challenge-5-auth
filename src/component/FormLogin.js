@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { getEmail } from "../action";
 import mockup from '../mockupData/mockup'
 
@@ -8,21 +8,20 @@ export default function FormLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    // let data;
-
-    // function responeLogin(email, password) {
-    //     return(
-    //         data = {
-    //             email,
-    //             password
-    //         }
-    //     )
-    // }
+    const navigate =  useNavigate()
+    const emailRedux = useSelector((state) => state.email)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const  respone = mockup(email, password)
         dispatch(getEmail(respone.email));
+        if(emailRedux === 'admin'){
+            navigate('/dashboard')
+        }else{
+            navigate('/home')
+        }
+       
+        
     }
 
     return(
